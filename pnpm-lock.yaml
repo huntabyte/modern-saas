@@ -84,6 +84,9 @@ devDependencies:
   prettier-plugin-tailwindcss:
     specifier: 0.2.3
     version: 0.2.3(prettier-plugin-svelte@2.10.0)(prettier@2.8.8)
+  stripe-event-types:
+    specifier: ^2.3.0
+    version: 2.3.0(stripe@12.4.0)
   supabase:
     specifier: ^1.55.1
     version: 1.55.1
@@ -1103,7 +1106,6 @@ packages:
     dependencies:
       function-bind: 1.1.1
       get-intrinsic: 1.2.0
-    dev: false
 
   /callsites@3.1.0:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
@@ -1679,7 +1681,6 @@ packages:
       function-bind: 1.1.1
       has: 1.0.3
       has-symbols: 1.0.3
-    dev: false
 
   /get-tsconfig@4.5.0:
     resolution: {integrity: sha512-MjhiaIWCJ1sAU4pIQ5i5OfOuHHxVo1oYeNsWTON7jxYkod8pHocXeh+SSbmu5OZZZK73B6cbJ2XADzXehLyovQ==}
@@ -1762,7 +1763,6 @@ packages:
   /has-symbols@1.0.3:
     resolution: {integrity: sha512-l3LCuF6MgDNwTDKkdYGEihYjt5pRPbEg46rtlmnSPlUbgmB8LOIrKJbYYFBSbnPaJexMKtiPO8hmeRjRz2Td+A==}
     engines: {node: '>= 0.4'}
-    dev: false
 
   /has@1.0.3:
     resolution: {integrity: sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==}
@@ -2114,7 +2114,6 @@ packages:
 
   /object-inspect@1.12.3:
     resolution: {integrity: sha512-geUvdk7c+eizMNUDkRpW1wJwgfOiOeHbxBR/hLXK1aT6zmVSO0jsQcs7fj6MGw89jC/cjGfLcNOrtMYtGqm81g==}
-    dev: false
 
   /once@1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
@@ -2475,7 +2474,6 @@ packages:
     engines: {node: '>=0.6'}
     dependencies:
       side-channel: 1.0.4
-    dev: false
 
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -2589,7 +2587,6 @@ packages:
       call-bind: 1.0.2
       get-intrinsic: 1.2.0
       object-inspect: 1.12.3
-    dev: false
 
   /signal-exit@4.0.1:
     resolution: {integrity: sha512-uUWsN4aOxJAS8KOuf3QMyFtgm1pkb6I+KRZbRF/ghdf5T7sM+B1lLLzPDxswUjkmHyxQAVzEgG35E3NzDM9GVw==}
@@ -2669,13 +2666,20 @@ packages:
       acorn: 8.8.2
     dev: true
 
+  /stripe-event-types@2.3.0(stripe@12.4.0):
+    resolution: {integrity: sha512-4qh0wblfZBbdHn3IH9bbRrGZw+TJuIern6UjoG1+17grSyhIJFvrrqTn2ACE/wx3PE7ZLXNG5Qzo7BEXXkuyoA==}
+    peerDependencies:
+      stripe: '>=10.0.0'
+    dependencies:
+      stripe: 12.4.0
+    dev: true
+
   /stripe@12.4.0:
     resolution: {integrity: sha512-QjZRzKi3wf8TsuJf/fd6/ejfPgwNptDIzFogRWaRzP3oMJnSD73I2YxR0Eje5zfrU8FmddYWZYawoUejqN+o1w==}
     engines: {node: '>=12.*'}
     dependencies:
       '@types/node': 20.1.0
       qs: 6.11.1
-    dev: false
 
   /sucrase@3.32.0:
     resolution: {integrity: sha512-ydQOU34rpSyj2TGyz4D2p8rbktIOZ8QY9s+DGLvFU1i5pWJE8vkpruCjGCMHsdXwnD7JDcS+noSwM/a7zyNFDQ==}
