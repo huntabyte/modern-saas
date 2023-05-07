@@ -28,6 +28,38 @@ export interface Database {
 	};
 	public: {
 		Tables: {
+			contacts: {
+				Row: {
+					company: string | null;
+					created_at: string;
+					email: string | null;
+					id: string;
+					name: string | null;
+					phone: string | null;
+					updated_at: string;
+					user_id: string;
+				};
+				Insert: {
+					company?: string | null;
+					created_at?: string;
+					email?: string | null;
+					id?: string;
+					name?: string | null;
+					phone?: string | null;
+					updated_at?: string;
+					user_id: string;
+				};
+				Update: {
+					company?: string | null;
+					created_at?: string;
+					email?: string | null;
+					id?: string;
+					name?: string | null;
+					phone?: string | null;
+					updated_at?: string;
+					user_id?: string;
+				};
+			};
 			profiles: {
 				Row: {
 					created_at: string;
