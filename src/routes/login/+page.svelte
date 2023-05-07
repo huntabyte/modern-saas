@@ -18,7 +18,6 @@
 				<label class="space-y-2" for="password">
 					<span>Password</span>
 					<input type="password" name="password" />
-					<span class="block text-red-600 dark:text-red-500">hello</span>
 				</label>
 				<Button type="submit" class="w-full">Login</Button>
 				<div class="text-sm font-medium text-gray-500 dark:text-gray-300">
