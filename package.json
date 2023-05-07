@@ -11,7 +11,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"gen:types": "pnpx supabase gen types typescript --local > src/lib/supabase-types.ts && prettier --write src/lib/supabase-types.ts"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
@@ -41,6 +42,8 @@
 	"type": "module",
 	"dependencies": {
 		"@popperjs/core": "^2.11.7",
+		"@supabase/auth-helpers-sveltekit": "^0.9.4",
+		"@supabase/supabase-js": "^2.21.0",
 		"classnames": "^2.3.2",
 		"dotenv": "^16.0.3",
 		"flowbite": "^1.6.5",
