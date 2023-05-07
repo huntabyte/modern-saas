@@ -12,13 +12,18 @@
 		TableHead,
 		TableHeadCell
 	} from "flowbite-svelte";
+	import type { PageData } from "./$types";
+	import CreateContactModal from "./CreateContactModal.svelte";
+
+	export let data: PageData;
+	let createContactOpen = false;
 </script>
 
 <div class="py-20">
 	<!-- Contacts Page Header -->
 	<div class="flex w-full items-center justify-between pb-6">
 		<h1 class="text-3xl">Contacts</h1>
-		<Button size="sm">New Contact</Button>
+		<Button size="sm" on:click={() => (createContactOpen = true)}>New Contact</Button>
 	</div>
 	<!-- Contacts Table -->
 	<Table shadow divClass="min-h-full">
@@ -48,3 +53,4 @@
 		</TableBody>
 	</Table>
 </div>
+<CreateContactModal bind:open={createContactOpen} data={data.createContactForm} />
