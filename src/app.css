@@ -1,0 +1,67 @@
+@font-face {
+	font-family: "Inter";
+	src: url("/fonts/Inter-VariableFont_slnt,wght.ttf");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+	@apply h-full;
+}
+body {
+	@apply text-gray-900 dark:bg-gray-900 dark:text-white;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	@apply font-bold;
+}
+
+h1 {
+	@apply text-5xl;
+}
+
+h2 {
+	@apply text-4xl;
+}
+
+h3 {
+	@apply text-3xl;
+}
+
+h4 {
+	@apply text-2xl;
+}
+
+h5 {
+	@apply text-xl;
+}
+
+h6 {
+	@apply text-lg;
+}
+
+p a {
+	@apply font-medium text-blue-600 underline hover:text-blue-700 hover:no-underline dark:text-blue-500 dark:hover:text-blue-600;
+}
+
+p strong {
+	@apply font-semibold;
+}
+
+form label {
+	@apply block text-sm font-medium;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
+	@apply block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 !important;
+}
