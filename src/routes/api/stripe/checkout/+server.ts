@@ -41,7 +41,12 @@ export const GET: RequestHandler = async (event) => {
 				metadata: {
 					user_id: session.user.id
 				},
-				trial_period_days: 14
+				trial_period_days: 14,
+				trial_settings: {
+					end_behavior: {
+						missing_payment_method: "cancel"
+					}
+				}
 			},
 			payment_method_collection: "if_required"
 		});
