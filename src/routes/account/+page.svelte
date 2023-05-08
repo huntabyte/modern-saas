@@ -30,7 +30,7 @@
 				<div>
 					Current Plan: <strong>Free</strong>
 				</div>
-				<Button class="mt-4">Manage Billing</Button>
+				<Button class="mt-4" href="/account/billing">Manage Billing</Button>
 			</div>
 		</section>
 		<!-- Profile Section -->
