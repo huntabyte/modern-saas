@@ -15,17 +15,21 @@
 		</div>
 		<Card class="mt-6 w-full" padding="xl" size="md">
 			<!-- Login Form -->
-			<form method="POST" class="flex flex-col space-y-6" use:enhance>
+			<form method="POST" class="flex flex-col space-y-6" use:enhance data-testid="login-form">
 				<label class="space-y-2" for="email">
 					<span>Email</span>
-					<input type="email" name="email" bind:value={$form.email} />
+					<input type="email" name="email" bind:value={$form.email} data-testid="email" />
 					{#if $errors.email}
 						<span class="block text-red-600 dark:text-red-500">{$errors.email}</span>
 					{/if}
 				</label>
 				<label class="space-y-2" for="password">
 					<span>Password</span>
-					<input type="password" name="password" bind:value={$form.password} />
+					<input
+						type="password"
+						name="password"
+						bind:value={$form.password}
+						data-testid="password" />
 					{#if $errors.password}
 						<span class="block text-red-600 dark:text-red-500">{$errors.password}</span>
 					{/if}
