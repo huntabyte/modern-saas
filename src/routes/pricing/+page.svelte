@@ -47,7 +47,10 @@
 						</li>
 					{/each}
 				</ul>
-				<Button class="w-full">{price.product.call_to_action}</Button>
+				<Button
+					class="w-full"
+					href={price.product.name === "Free" ? "/contacts" : `/api/stripe/checkout?id=${price.id}`}
+					>{price.product.call_to_action}</Button>
 			</Card>
 		{/each}
 	</div>
