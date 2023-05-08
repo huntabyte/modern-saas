@@ -33,7 +33,7 @@ export const POST: RequestHandler = async (event) => {
 				await upsertProductRecord(stripeEvent.data.object);
 				break;
 			case "product.deleted":
-				await deleteProductRecord(stripeEvent.data.object)
+				await deleteProductRecord(stripeEvent.data.object);
 				break;
 			case "customer.updated":
 				console.log("customer updated", stripeEvent);
