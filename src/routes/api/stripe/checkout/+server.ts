@@ -3,6 +3,7 @@ import type { RequestHandler } from "./$types";
 import { getCustomerRecord } from "$lib/server/customers";
 import { stripe } from "$lib/server/stripe";
 import { ENV } from "$lib/server/env";
+import { createCheckoutSession } from "$lib/server/subscriptions";
 
 export const GET: RequestHandler = async (event) => {
 	const session = await event.locals.getSession();
@@ -18,43 +19,7 @@ export const GET: RequestHandler = async (event) => {
 	let checkoutUrl: string;
 
 	try {
-		const customer = await getCustomerRecord(session.user.id);
-		const price = await stripe.prices.retrieve(price_id);
-
-		if (!price) {
-			throw new Error("Invalid price id");
-		}
-
-		const checkoutSession = await stripe.checkout.sessions.create({
-			payment_method_types: ["card"],
-			mode: "subscription",
-			customer: customer.id,
-			line_items: [
-				{
-					price: price.id,
-					quantity: 1
-				}
-			],
-			success_url: `${ENV.PUBLIC_BASE_URL}/account`,
-			cancel_url: `${ENV.PUBLIC_BASE_URL}/pricing`,
-			subscription_data: {
-				metadata: {
-					user_id: session.user.id
-				},
-				trial_period_days: 14,
-				trial_settings: {
-					end_behavior: {
-						missing_payment_method: "cancel"
-					}
-				}
-			},
-			payment_method_collection: "if_required"
-		});
-
-		if (!checkoutSession.url) {
-			throw new Error("Error creating checkout session");
-		}
-		checkoutUrl = checkoutSession.url;
+		checkoutUrl = await createCheckoutSession(session.user.id, price_id);
 	} catch (e) {
 		console.log(e);
 		throw error(500, "An error occurred while creating the checkout session.");
