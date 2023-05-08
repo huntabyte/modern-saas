@@ -1,4 +1,7 @@
 import { z } from "zod";
+import { productNames } from "./config";
+import { productConfig } from "./config";
+import { lookupKeys } from "./config";
 
 export const registerUserSchema = z.object({
 	full_name: z.string().max(140, "Name must be 140 characters or less").nullish(),
@@ -101,3 +104,26 @@ export const stripeSubscriptionSchema = z
 			product_id: price.product
 		};
 	});
+
+const priceProductSchema = z
+	.object({
+		id: z.string(),
+		name: z.enum([...productNames]),
+		description: z.string()
+	})
+	.transform((product) => {
+		return {
+			...product,
+			features: productConfig[product.name].features,
+			call_to_action: productConfig[product.name].call_to_action
+		};
+	});
+
+const priceSchema = z.object({
+	id: z.string(),
+	lookup_key: z.enum([...lookupKeys]),
+	unit_amount: z.number().transform((amount) => amount / 100),
+	product: priceProductSchema
+});
+
+export const priceListSchema = z.array(priceSchema);

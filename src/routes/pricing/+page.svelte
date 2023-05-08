@@ -1,6 +1,10 @@
 <script lang="ts">
-	import { Button, Card } from "flowbite-svelte";
-	import { prices } from "$lib/data";
+	import { Button, ButtonGroup, Card } from "flowbite-svelte";
+
+	import type { PageData } from "./$types";
+	export let data: PageData;
+
+	$: ({ prices, interval } = data);
 </script>
 
 <div class="py-20">
@@ -13,7 +17,13 @@
 			from our range of affordable options and get started today
 		</p>
 	</div>
-
+	<div class="flex justify-center">
+		<ButtonGroup>
+			<Button color="blue" outline={interval !== "month"} href="/pricing">Monthly</Button>
+			<Button color="blue" outline={interval !== "year"} href="/pricing?interval=year"
+				>Yearly</Button>
+		</ButtonGroup>
+	</div>
 	<!-- Pricing Card Grid -->
 	<div
 		class="isolate mx-auto mt-10 grid max-w-6xl grid-cols-1 justify-items-center gap-8 lg:grid-cols-3">
@@ -26,7 +36,8 @@
 				<div class="flex items-baseline text-gray-900 dark:text-white">
 					<span class="text-3xl font-semibold">$</span>
 					<span class="text-5xl font-extrabold tracking-tight">{price.unit_amount}</span>
-					<span class="ml-1 text-xl font-normal text-gray-500 dark:text-gray-400">/month</span>
+					<span class="ml-1 text-xl font-normal text-gray-500 dark:text-gray-400"
+						>/{price.unit_amount > 0 ? interval : "forever"}</span>
 				</div>
 				<ul class="my-7 space-y-6">
 					{#each price.product.features as feature}

@@ -1,4 +1,4 @@
-export const lookupKeys = ["plus_monthly", "plus_yearly", "pro_monthly", "pro_year"] as const;
+export const lookupKeys = ["plus_monthly", "plus_yearly", "pro_monthly", "pro_yearly"] as const;
 
 export const productNames = ["Free", "Plus", "Pro"] as const;
 type ProductNames = (typeof productNames)[number];
