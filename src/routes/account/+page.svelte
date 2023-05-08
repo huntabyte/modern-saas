@@ -28,7 +28,7 @@
 			<p class="mt-3 max-w-none text-sm">Manage your current plan and billing details</p>
 			<div class="mt-8">
 				<div>
-					Current Plan: <strong>Free</strong>
+					Current Plan: <strong>{data.tier}</strong>
 				</div>
 				<Button class="mt-4" href="/account/billing">Manage Billing</Button>
 			</div>

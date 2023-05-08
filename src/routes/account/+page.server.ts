@@ -2,6 +2,7 @@ import { error, fail, redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 import { setError, superValidate } from "sveltekit-superforms/server";
 import { emailSchema, passwordSchema, profileSchema } from "$lib/schemas";
+import { getSubscriptionTier } from "$lib/server/subscriptions";
 
 export const load: PageServerLoad = async (event) => {
 	const session = await event.locals.getSession();
@@ -31,7 +32,8 @@ export const load: PageServerLoad = async (event) => {
 		}),
 		passwordForm: superValidate(passwordSchema, {
 			id: "password"
-		})
+		}),
+		tier: getSubscriptionTier(session.user.id)
 	};
 };
 
