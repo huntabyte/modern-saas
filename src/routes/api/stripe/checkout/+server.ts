@@ -1,14 +1,12 @@
 import { error, redirect } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
-import { getCustomerRecord } from "$lib/server/customers";
-import { stripe } from "$lib/server/stripe";
-import { ENV } from "$lib/server/env";
 import { createCheckoutSession } from "$lib/server/subscriptions";
+import { handleLoginRedirect } from "$lib/helpers";
 
 export const GET: RequestHandler = async (event) => {
 	const session = await event.locals.getSession();
 	if (!session) {
-		throw redirect(302, "/login");
+		throw redirect(302, handleLoginRedirect(event));
 	}
 
 	const price_id = event.url.searchParams.get("id");

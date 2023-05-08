@@ -2,11 +2,12 @@ import { error, fail, redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 import { setError, superValidate } from "sveltekit-superforms/server";
 import { createContactSchema } from "$lib/schemas";
+import { handleLoginRedirect } from "$lib/helpers";
 
 export const load: PageServerLoad = async (event) => {
 	const session = await event.locals.getSession();
 	if (!session) {
-		throw redirect(302, "/login");
+		throw redirect(302, handleLoginRedirect(event));
 	}
 
 	async function getContact(contact_id: string) {
