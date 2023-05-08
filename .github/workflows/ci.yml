@@ -1,0 +1,71 @@
+name: Deploy 🚀
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+  SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Install Vercel CLI
+        run: pnpm i -g vercel@canary
+
+      - name: Pull Dev Env. Vars.
+        run: vercel env pull --yes --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Start Local Supabase
+        run: supabase start -x imgproxy,studio,storage-api,realtime,inbucket,edge-runtime
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Install Playwright Browsers
+        run: pnpx playwright install --with-deps chromium
+
+      - name: Test 🧪
+        run: pnpm test
+
+      - name: Link Supabase CLI to Prod
+        run: supabase link --project-ref ${{ secrets.SUPABASE_PROJECT_ID }}
+
+      - name: Push Supabase DB Changes
+        run: supabase db push
+
+      - name: Pull Prod Env Variables
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN}}
