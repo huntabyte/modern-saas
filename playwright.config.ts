@@ -1,4 +1,5 @@
-import { PlaywrightTestConfig } from "@playwright/test";
+import { PlaywrightTestConfig, devices } from "@playwright/test";
+import { resolve } from "path";
 
 const config: PlaywrightTestConfig = {
 	webServer: {
@@ -7,7 +8,15 @@ const config: PlaywrightTestConfig = {
 		reuseExistingServer: true
 	},
 	testDir: "tests",
-	testMatch: /(.+\.)?(test|spec)\.[jt]s/
+	testMatch: /(.+\.)?(test|spec)\.[jt]s/,
+	projects: [
+		{
+			name: "chromium",
+			use: { ...devices["Desktop Chrome"] }
+		}
+	],
+	globalSetup: resolve("tests/globalSetup.ts"),
+	globalTeardown: resolve("tests/globalSetup.ts")
 };
 
 export default config;
