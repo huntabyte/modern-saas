@@ -95,8 +95,7 @@ export async function createCheckoutSession(user_id: string, price_id: string) {
 						missing_payment_method: "cancel"
 					}
 				}
-			},
-			payment_method_collection: "if_required"
+			}
 		});
 
 		if (!checkoutSession.url) {
