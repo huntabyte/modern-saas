@@ -13,31 +13,36 @@
 			<h1 class="text-4xl font-semibold">Edit Contact</h1>
 		</div>
 		<Card class="mt-6 w-full" padding="xl" size="md">
-			<form method="POST" action="?/updateContact" class="flex flex-col space-y-6" use:enhance>
+			<form
+				method="POST"
+				action="?/updateContact"
+				class="flex flex-col space-y-6"
+				use:enhance
+				data-testid="edit-contact-form">
 				<label class="space-y-2" for="name">
 					<span>Name</span>
-					<input type="text" name="name" bind:value={$form.name} />
+					<input type="text" name="name" bind:value={$form.name} data-testid="name" />
 					{#if $errors.name}
 						<span class="block text-red-600 dark:text-red-500">{$errors.name}</span>
 					{/if}
 				</label>
 				<label class="space-y-2" for="email">
 					<span>Email</span>
-					<input type="email" name="email" bind:value={$form.email} />
+					<input type="email" name="email" bind:value={$form.email} data-testid="email" />
 					{#if $errors.email}
 						<span class="block text-red-600 dark:text-red-500">{$errors.email}</span>
 					{/if}
 				</label>
 				<label class="space-y-2" for="phone">
 					<span>Phone</span>
-					<input type="text" name="phone" bind:value={$form.phone} />
+					<input type="text" name="phone" bind:value={$form.phone} data-testid="phone" />
 					{#if $errors.phone}
 						<span class="block text-red-600 dark:text-red-500">{$errors.phone}</span>
 					{/if}
 				</label>
 				<label class="space-y-2" for="company">
 					<span>Company</span>
-					<input type="text" name="company" bind:value={$form.company} />
+					<input type="text" name="company" bind:value={$form.company} data-testid="company" />
 					{#if $errors.company}
 						<span class="block text-red-600 dark:text-red-500">{$errors.company}</span>
 					{/if}
