@@ -59,6 +59,7 @@
 		"dotenv": "^16.0.3",
 		"flowbite": "^1.6.5",
 		"flowbite-svelte": "^0.34.10",
-		"stripe": "^12.4.0"
+		"stripe": "^12.4.0",
+		"svelte-french-toast": "1.0.4-beta.0"
 	}
 }
