@@ -49,3 +49,11 @@ export const freePrice = {
 		call_to_action: productConfig.Free.call_to_action
 	}
 };
+
+export const tierPolicy = {
+	maxContacts: {
+		Free: 5,
+		Plus: 25,
+		Pro: Infinity
+	}
+} as const;
