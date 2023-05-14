@@ -57,7 +57,9 @@
 				<Button color="light"><Chevron>Account</Chevron></Button>
 				<Dropdown>
 					<div slot="header" class="px-4 py-2">
-						<span class="block truncate text-sm font-medium"> {session.user.email} </span>
+						<span class="block w-36 truncate text-xs font-medium">
+							{session.user.email}
+						</span>
 					</div>
 					<DropdownItem href="/account">Settings</DropdownItem>
 					<DropdownItem href="/account/billing">Billing</DropdownItem>
