@@ -17,6 +17,7 @@ export const productConfig: ProductConfig = {
 		call_to_action: "Get Started"
 	},
 	Plus: {
+		
 		features: [
 			"✅ Up to 25 Contacts",
 			"✅ Community Support",
@@ -39,7 +40,7 @@ export const productConfig: ProductConfig = {
 };
 
 export const freePrice = {
-	id: "",
+	id: "1",
 	unit_amount: 0,
 	interval: "forever",
 	product: {
@@ -47,6 +48,19 @@ export const freePrice = {
 		description: "For limited personal use",
 		features: productConfig.Free.features,
 		call_to_action: productConfig.Free.call_to_action
+	}
+};
+
+export const plusPrice = {
+	id: 'price_1O46w0AYQdC6yjy9zIENc96N',
+	unit_amount: 30,
+	interval: "forever",
+	product: {
+
+		name: "Plus",
+		description: "For any kind of use",
+		features: productConfig.Plus.features,
+		call_to_action: productConfig.Plus.call_to_action
 	}
 };
 

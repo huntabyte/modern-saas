@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { PageServerLoad } from "./$types";
 import { stripe } from "$lib/server/stripe";
-import { freePrice, lookupKeys } from "$lib/config";
+import { freePrice, plusPrice, lookupKeys } from "$lib/config";
 import { priceListSchema } from "$lib/schemas";
 
 const intervalSchema = z.enum(["month", "year"]).catch("month");
@@ -20,7 +20,7 @@ export const load: PageServerLoad = async (event) => {
 		.sort((a, b) => a.unit_amount - b.unit_amount);
 
 	return {
-		prices: [freePrice, ...prices],
+		prices: [freePrice,plusPrice, ...prices],
 		interval
 	};
 };

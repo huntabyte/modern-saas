@@ -26,7 +26,7 @@ export const GET: RequestHandler = async (event) => {
 		checkoutUrl = await createCheckoutSession(session.user.id, price_id);
 	} catch (e) {
 		console.log(e);
-		throw error(500, "An error occurred while creating the checkout session.");
+		throw error(500, "An error occurred while creating the checkout session oooo.");
 	}
 
 	throw redirect(302, checkoutUrl);

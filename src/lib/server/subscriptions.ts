@@ -121,7 +121,7 @@ export async function createCheckoutSession(user_id: string, price_id: string) {
 		success_url: `${ENV.PUBLIC_BASE_URL}/account`,
 		cancel_url: `${ENV.PUBLIC_BASE_URL}/pricing`,
 		subscription_data: {
-			metadata: {
+			metadata: {			
 				user_id
 			}
 		}
