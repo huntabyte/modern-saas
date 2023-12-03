@@ -1,4 +1,4 @@
-import type { Database } from "$lib/supabase-types";
+
 import type { Session, SupabaseClient } from "@supabase/supabase-js";
 
 declare global {
@@ -6,11 +6,14 @@ declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
-			supabase: SupabaseClient<Database>;
+		
+			supabase: SupabaseClient;
 			getSession(): Promise<Session | null>;
+			user: Session.user;
 		}
 		interface PageData {
 			session: Session | null;
+			user: Session.user;
 		}
 		// interface Platform {}
 	}

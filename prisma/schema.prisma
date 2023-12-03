@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("CONNECTION_POOL_URL")
+}
+
+
+
+// prisma/schema.prisma
+
+// prisma/schema.prisma
+
+model Page {
+  page_id    String   @id  @unique
+  data       String
+  updated_at DateTime @default(now()) @updatedAt
+}
+
+model Counter {
+  counter_id String   @id 
+  count      Int
+}
+
+model Asset {
+  asset_id   String   @id  
+  mime_type  String
+  updated_at DateTime? @default(now()) @updatedAt
+  size       Int
+  data       Bytes
+}
+
+model Article {
+  article_id  Int      @id @default(autoincrement())
+  slug        String   @unique
+  title       String
+  teaser      String
+  content     String?
+  created_at  DateTime @default(now())
+  published_at DateTime?
+  updated_at  DateTime?
+}
+
